@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.scss";
 import { SetTodosType, TodoType } from "../../types";
 
 export const TodoCreate = ({ setTodos }: { setTodos: SetTodosType }) => {
   const [title, setTitle] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleCreate = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -27,6 +28,10 @@ export const TodoCreate = ({ setTodos }: { setTodos: SetTodosType }) => {
     }
   };
 
+  useEffect(() => {
+    inputRef.current && inputRef.current.focus();
+  }, []);
+
   return (
     <div className="todo-create">
       <div className="todo-create-title">TodoCreate</div>
@@ -36,6 +41,7 @@ export const TodoCreate = ({ setTodos }: { setTodos: SetTodosType }) => {
         onChange={handleCreate}
         value={title}
         onKeyDown={handleKeyDown}
+        ref={inputRef}
       />
       <button onClick={handleCreateClick}>Create</button>
     </div>
