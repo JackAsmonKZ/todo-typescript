@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.scss";
 import { Header, TodoCreate, TodoFilter, TodoList } from "./components";
 import { TodoType } from "./types";
