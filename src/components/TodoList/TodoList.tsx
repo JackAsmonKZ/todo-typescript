@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import "./styles.scss";
 
 import { TodoItem } from "./TodoItem/TodoItem";
@@ -18,8 +18,13 @@ export const TodoList = ({ todos, setTodos, filter }: TodoListTypes) => {
     <div className="todo-list">
       <h2>TodoList</h2>
       <ul className="todo-item-list">
-        {filteredTodos.map((todo) => (
-          <TodoItem todo={todo} setTodos={setTodos} key={todo.id} />
+        {filteredTodos.map((todo, index) => (
+          <TodoItem
+            todo={todo}
+            isEvenTodo={index % 2 === 0}
+            setTodos={setTodos}
+            key={todo.id}
+          />
         ))}
       </ul>
     </div>
